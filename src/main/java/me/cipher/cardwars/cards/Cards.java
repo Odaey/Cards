@@ -53,7 +53,7 @@ public class Cards {
         return null;
     }
 
-    // Check if an ItemStack is a valid card
+    // Check if an ItemStack is a valid card ya 7ywan
     public boolean isCard(ItemStack i) {
         if (i.getType() == Material.FILLED_MAP) {
             MapMeta mm = (MapMeta) i.getItemMeta();
