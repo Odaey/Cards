@@ -6,17 +6,38 @@ import org.bukkit.inventory.meta.MapMeta;
 
 public class Cards {
 
+    // action cards
+    public enum ActionCards{
+        Deal_Breaker(2),//steal a compelete set of properties from another player
+        Dept_Collector(3),//force anyplayer to pay you 5M
+        Double_The_Rent(2),//Needs to be played with a rent card
+        Forced_Deal(3),//Swap any property with another player(Cannot be part of a compelete set)
+        Its_My_Birthday(3),//all players give you 2M as a gift
+        Just_Say_no(3),//Use anytime when an action card is played agaonst you
+        Pass_GO(10),//Draw extra 2 cards
+        Sly_Deal(3)//Steal a property from the player of ur choice(Cannot be a part of a full set)
+
+
+
+    }
+
     // Enumeration for different types of cards
     public enum Card {
-        // Royal cards
-        FORTS, TOWERS, VILLAGERS, KINGDOM, ARMY, KNIGHTS,
-        KING, QUEEN, PRINCE, PRINCESS, SQUIRE,
-        RUNE, TREASURE, CROWN, ROYAL_STAFF, THRONE,
+        // jeddah
+        alwaha_school
 
-        // Warrior cards
-        NINJA, MERCENARY, HITMAN, SHADOWREAPER,
-        DUELIST, HERO, BATTLEFRONT, MECHA, HIGHLANDER,
-        WIZARD, WITCH, ORACLE, WARLOCK, JEST, ENCHANTER,
+
+
+
+
+/*        FORTS, TOWERS, VILLAGERS, KINGDOM, ARMY, KNIGHTS,
+        KING, QUEEN, PRINCE, PRINCESS, SQUIRE,
+       RUNE, TREASURE, CROWN, ROYAL_STAFF, THRONE,
+
+         Warrior cards
+       NINJA, MERCENARY, HITMAN, SHADOWREAPER,
+       DUELIST, HERO, BATTLEFRONT, MECHA, HIGHLANDER,
+        WIZARD, WITCH, ORACLE, WARLOCK, JEST, ENCHANTER,*/
 
         // Placeholder card
         PLACEHOLDER,
@@ -26,6 +47,7 @@ public class Cards {
     public enum Set {
         ROYAL,
         WARRIOR,
+
     }
 
     // Enumeration for groups of cards
