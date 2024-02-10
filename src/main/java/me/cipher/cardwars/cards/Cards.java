@@ -21,7 +21,6 @@ public class Cards {
 
     }
 
-    // Enumeration for different types of cards
     public enum Card {
         // jeddah
         alwaha_school
