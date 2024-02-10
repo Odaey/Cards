@@ -75,8 +75,12 @@ public class Properties implements Listener {
         itemFrame.setFacingDirection(direction);
 
         ItemStack mapItem = new ItemStack(Material.FILLED_MAP);
-        mapItem.setDurability((short) mapView.getId());
+        MapMeta meta = (MapMeta) mapItem.getItemMeta();
 
+        meta.setMapId(mapView.getId());
+
+        mapItem.setItemMeta(meta);
         itemFrame.setItem(mapItem);
+
     }
 }

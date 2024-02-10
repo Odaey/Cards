@@ -11,6 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.MapMeta;
 
 public class Visuals implements CommandExecutor {
 
@@ -42,7 +44,12 @@ public class Visuals implements CommandExecutor {
                     itemFrame.setFacingDirection(d);
 
                     ItemStack mapItem = new ItemStack(Material.FILLED_MAP);
-                    mapItem.setDurability((short) mapId);
+                    MapMeta meta = (MapMeta) mapItem.getItemMeta();
+
+                    meta.setMapId(mapId);
+
+                    mapItem.setItemMeta(meta);
+                    itemFrame.setItem(mapItem);
 
                 }else {
 
