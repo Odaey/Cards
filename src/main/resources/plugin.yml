@@ -6,3 +6,4 @@ commands:
   addplayer:
   removeplayer:
   startgame:
+  setProperty:
