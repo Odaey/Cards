@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.ArrayList;
 
+import static org.bukkit.Bukkit.getPlayer;
 import static org.bukkit.Bukkit.getServer;
 
 public class Cmds implements CommandExecutor {

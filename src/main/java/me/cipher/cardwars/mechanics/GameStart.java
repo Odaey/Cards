@@ -8,20 +8,10 @@ import me.cipher.cardwars.stations.YellowTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-
-import java.io.File;
-import java.util.ArrayList;
-
-import static org.bukkit.Bukkit.getLogger;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+
 import java.util.logging.Logger;
 
 public class GameStart {

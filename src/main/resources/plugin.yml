@@ -2,3 +2,7 @@ name: CardWars
 version: '${project.version}'
 main: me.cipher.cardwars.CardWars
 api-version: '1.20'
+commands:
+  addplayer:
+  removeplayer:
+  startgame:
