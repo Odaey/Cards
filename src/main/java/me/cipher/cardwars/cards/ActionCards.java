@@ -1,7 +1,10 @@
 package me.cipher.cardwars.cards;
 
 import me.cipher.cardwars.CardWars;
+import me.cipher.cardwars.stations.BlueTeam;
+import me.cipher.cardwars.stations.GreenTeam;
 import me.cipher.cardwars.stations.RedTeam;
+import me.cipher.cardwars.stations.YellowTeam;
 import me.cipher.cardwars.uitls.States;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -99,17 +102,17 @@ public class ActionCards implements Listener {
         }
         if(e.getCurrentItem().getType() == Material.BLUE_CONCRETE){
 
-            if(!plugin.getConfig().contains("Teams.RedTeam.Gold")) return;
+            if(!plugin.getConfig().contains("Teams.BlueTeam.Gold")) return;
 
-            int gold = plugin.getConfig().getInt("Teams.RedTeam.Gold");
+            int gold = plugin.getConfig().getInt("Teams.Blueeam.Gold");
 
             if(gold > 4){
 
-                plugin.getConfig().set("Teams.RedTeam.Gold",gold - 5);
+                plugin.getConfig().set("Teams.BlueTeam.Gold",gold - 5);
                 plugin.saveConfig();
 
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players remove "+new RedTeam(plugin).getPlayer().getName() +" Gold "+ 5);
+                        "scoreboard players remove "+new BlueTeam(plugin).getPlayer().getName() +" Gold "+ 5);
 
             }else{
 
@@ -119,17 +122,17 @@ public class ActionCards implements Listener {
         }
         if(e.getCurrentItem().getType() == Material.YELLOW_CONCRETE){
 
-            if(!plugin.getConfig().contains("Teams.RedTeam.Gold")) return;
+            if(!plugin.getConfig().contains("Teams.YellowTeam.Gold")) return;
 
-            int gold = plugin.getConfig().getInt("Teams.RedTeam.Gold");
+            int gold = plugin.getConfig().getInt("Teams.YellowTeam.Gold");
 
             if(gold > 4){
 
-                plugin.getConfig().set("Teams.RedTeam.Gold",gold - 5);
+                plugin.getConfig().set("Teams.YellowTeam.Gold",gold - 5);
                 plugin.saveConfig();
 
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players remove "+new RedTeam(plugin).getPlayer().getName() +" Gold "+ 5);
+                        "scoreboard players remove "+new YellowTeam(plugin).getPlayer().getName() +" Gold "+ 5);
 
             }else{
 
@@ -139,17 +142,17 @@ public class ActionCards implements Listener {
         }
         if(e.getCurrentItem().getType() == Material.GREEN_CONCRETE){
 
-            if(!plugin.getConfig().contains("Teams.RedTeam.Gold")) return;
+            if(!plugin.getConfig().contains("Teams.GreenTeam.Gold")) return;
 
-            int gold = plugin.getConfig().getInt("Teams.RedTeam.Gold");
+            int gold = plugin.getConfig().getInt("Teams.GreenTeam.Gold");
 
             if(gold > 4){
 
-                plugin.getConfig().set("Teams.RedTeam.Gold",gold - 5);
+                plugin.getConfig().set("Teams.GreenTeam.Gold",gold - 5);
                 plugin.saveConfig();
 
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players remove "+new RedTeam(plugin).getPlayer().getName() +" Gold "+ 5);
+                        "scoreboard players remove "+new GreenTeam(plugin).getPlayer().getName() +" Gold "+ 5);
 
             }else{
 
