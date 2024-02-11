@@ -9,6 +9,7 @@ import me.cipher.cardwars.stations.YellowTeam;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -75,5 +76,25 @@ public class SlotGetters {
         if (teamId.equals("GreenTeam")) direction = new GreenTeam(plugin).getPropertyDirection();
 
         return direction;
+    }
+    public String getPlayerTeam(Player p){
+
+        String s = "";
+
+        ArrayList<String> tl = new ArrayList<>();
+        tl.add("RedTeam"); tl.add("BlueTeam"); tl.add("YellowTeam"); tl.add("GreenTeam");
+
+        for(String t : tl){
+
+            String name = plugin.getConfig().getString("Teams."+t+".Player");
+
+            if(name.equalsIgnoreCase(p.getName())){
+
+                s=t;
+                break;
+            }
+        }
+
+        return s;
     }
 }

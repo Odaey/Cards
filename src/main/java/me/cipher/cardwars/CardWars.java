@@ -1,5 +1,7 @@
 package me.cipher.cardwars;
 
+import me.cipher.cardwars.cards.ActionCards;
+import me.cipher.cardwars.cards.Gold;
 import me.cipher.cardwars.cards.Properties;
 import me.cipher.cardwars.mechanics.Cmds;
 import me.cipher.cardwars.testingkit.Visuals;
@@ -13,6 +15,8 @@ public final class CardWars extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new Properties(this),this);
+        getServer().getPluginManager().registerEvents(new ActionCards(this),this);
+        getServer().getPluginManager().registerEvents(new Gold(this),this);
 
         getServer().getPluginCommand("addplayer").setExecutor(new Cmds(this));
         getServer().getPluginCommand("removeplayer").setExecutor(new Cmds(this));

@@ -2,6 +2,7 @@ package me.cipher.cardwars.uitls;
 
 import me.cipher.cardwars.CardWars;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -34,5 +35,9 @@ public class States {
             return player.getName().equals(currentPlayerName);
         }
         return false;
+    }
+    public boolean isHolding(Player p){
+
+        return p.getInventory().getItemInMainHand().getType() == Material.FILLED_MAP;
     }
 }

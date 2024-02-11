@@ -6,37 +6,28 @@ import org.bukkit.inventory.meta.MapMeta;
 
 public class Cards {
 
-    // action cards
-    public enum ActionCards{
-        Deal_Breaker(2),//steal a compelete set of properties from another player
-        Dept_Collector(3),//force anyplayer to pay you 5M
-        Double_The_Rent(2),//Needs to be played with a rent card
-        Forced_Deal(3),//Swap any property with another player(Cannot be part of a compelete set)
-        Its_My_Birthday(3),//all players give you 2M as a gift
-        Just_Say_no(3),//Use anytime when an action card is played agaonst you
-        Pass_GO(10),//Draw extra 2 cards
-        Sly_Deal(3)//Steal a property from the player of ur choice(Cannot be a part of a full set)
-
-
-
-    }
+    {// action cards
+    /*public enum ActionCards{
+        Deal_Breaker,//steal a compelete set of properties from another player
+        Dept_Collector,//force anyplayer to pay you 5M
+        Double_The_Rent,//Needs to be played with a rent card
+        Forced_Deal,//Swap any property with another player(Cannot be part of a compelete set)
+        Its_My_Birthday,//all players give you 2M as a gift
+        Just_Say_no,//Use anytime when an action card is played agaonst you
+        Pass_GO,//Draw extra 2 cards
+        Sly_Deal,//Steal a property from the player of ur choice(Cannot be a part of a full set)
+    }*/}
 
     public enum Card {
         // jeddah
-        alwaha_school
-
-
-
-
-
-/*        FORTS, TOWERS, VILLAGERS, KINGDOM, ARMY, KNIGHTS,
+        FORTS, TOWERS, VILLAGERS, KINGDOM, ARMY, KNIGHTS,
         KING, QUEEN, PRINCE, PRINCESS, SQUIRE,
-       RUNE, TREASURE, CROWN, ROYAL_STAFF, THRONE,
+        RUNE, TREASURE, CROWN, ROYAL_STAFF, THRONE,
 
-         Warrior cards
-       NINJA, MERCENARY, HITMAN, SHADOWREAPER,
-       DUELIST, HERO, BATTLEFRONT, MECHA, HIGHLANDER,
-        WIZARD, WITCH, ORACLE, WARLOCK, JEST, ENCHANTER,*/
+         //Warrior cards
+        NINJA, MERCENARY, HITMAN, SHADOWREAPER,
+        DUELIST, HERO, BATTLEFRONT, MECHA, HIGHLANDER,
+        WIZARD, WITCH, ORACLE, WARLOCK, JEST, ENCHANTER,
 
         // Placeholder card
         PLACEHOLDER,
@@ -80,7 +71,7 @@ public class Cards {
             MapMeta mm = (MapMeta) i.getItemMeta();
             int id = mm.getMapView().getId();
             // Check if the map ID falls within the valid card ID range
-            return id >= 14 && id <= 45;
+            return id >= 15 && id <= 100;
         }
         return false;
     }
@@ -88,7 +79,7 @@ public class Cards {
     // Get the Card enum based on MapMeta
     public Card getCard(MapMeta m) {
         int id = m.getMapView().getId();
-        if (id >= 14 && id <= 45) {
+        if (id >= 14 && id <= 100) {
             // Calculate the Card enum based on the map ID
             return Card.values()[id - 14];
         }
