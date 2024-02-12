@@ -17,7 +17,8 @@ import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
 
-public class Gold implements Listener {
+public class
+Gold implements Listener {
     private final CardWars plugin;
 
     public Gold(CardWars plugin) {

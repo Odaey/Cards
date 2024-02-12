@@ -193,20 +193,35 @@ public class ActionCards implements Listener {
         if(e.getCurrentItem().getType() == Material.YELLOW_CONCRETE){
 
             if(!plugin.getConfig().contains("Teams.YellowTeam.Gold")) return;
+            Player ep = new BlueTeam(plugin).getPlayer();
 
             int gold = plugin.getConfig().getInt("Teams.YellowTeam.Gold");
             int ogg = plugin.getConfig().getInt("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold");
 
             if(gold > 4){
 
-                plugin.getConfig().set("Teams.YellowTeam.Gold",gold - 5);
-                plugin.getConfig().set("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold", ogg + 5);
-                plugin.saveConfig();
+                ep.sendMessage("You owe "+p.getName()+" 5 Gold, you have 10 seconds to counter this debt");
+                new States(plugin).addDue(ep, States.Dues.DEBT);
+                timer = new BukkitRunnable() {
+                    @Override
+                    public void run() {
 
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players remove "+new YellowTeam(plugin).getPlayer().getName() +" Gold "+ 5);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players add "+p.getName() +" Gold "+ 5);
+                        if(new States(plugin).hasDebt(ep)){
+                            plugin.getConfig().set("Teams.YellowTeam.Gold",gold - 5);
+                            plugin.getConfig().set("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold", ogg + 5);
+                            plugin.saveConfig();
+
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                                    "scoreboard players remove "+ep.getName() +" Gold "+ 5);
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                                    "scoreboard players add "+p.getName() +" Gold "+ 5);
+
+                            ep.sendMessage("5 Gold had been deducted from your balance");
+
+                        }
+                    }
+                };
+                timer.runTaskLater(plugin, 10*20L);
 
             }else{
 
@@ -217,20 +232,35 @@ public class ActionCards implements Listener {
         if(e.getCurrentItem().getType() == Material.GREEN_CONCRETE){
 
             if(!plugin.getConfig().contains("Teams.GreenTeam.Gold")) return;
+            Player ep = new BlueTeam(plugin).getPlayer();
 
             int gold = plugin.getConfig().getInt("Teams.GreenTeam.Gold");
             int ogg = plugin.getConfig().getInt("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold");
 
             if(gold > 4){
 
-                plugin.getConfig().set("Teams.GreenTeam.Gold",gold - 5);
-                plugin.getConfig().set("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold", ogg + 5);
-                plugin.saveConfig();
+                ep.sendMessage("You owe "+p.getName()+" 5 Gold, you have 10 seconds to counter this debt");
+                new States(plugin).addDue(ep, States.Dues.DEBT);
+                timer = new BukkitRunnable() {
+                    @Override
+                    public void run() {
 
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players remove "+new GreenTeam(plugin).getPlayer().getName() +" Gold "+ 5);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        "scoreboard players add "+p.getName() +" Gold "+ 5);
+                        if(new States(plugin).hasDebt(ep)){
+                            plugin.getConfig().set("Teams.GreenTeam.Gold",gold - 5);
+                            plugin.getConfig().set("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".Gold", ogg + 5);
+                            plugin.saveConfig();
+
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                                    "scoreboard players remove "+ep.getName() +" Gold "+ 5);
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                                    "scoreboard players add "+p.getName() +" Gold "+ 5);
+
+                            ep.sendMessage("5 Gold had been deducted from your balance");
+
+                        }
+                    }
+                };
+                timer.runTaskLater(plugin, 10*20L);
 
             }else{
 
