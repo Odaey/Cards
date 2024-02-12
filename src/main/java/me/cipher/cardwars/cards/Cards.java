@@ -22,20 +22,20 @@ public class Cards {
     public enum Card {
 
 
-        A1(), A2(), A3(), A4(), A5(),
-        B1(), B2(), B3(), B4(), B5(),
-        C1(), C2(), C3(), C4(), C5(),
+        A1(2), A2(2), A3(2), A4(2), A5(2),
+        B1(3), B2(3), B3(3), B4(3), B5(3),
+        C1(5), C2(5), C3(5), C4(5), C5(5),
 
-        D1(), D2(), D3(), D4(),
-        E1(), E2(), E3(), E4(),
-        F1(), F2(), F3(), F4(),
+        D1(1), D2(1), D3(1), D4(1),
+        E1(2), E2(2), E3(2), E4(2),
+        F1(5), F2(5), F3(5), F4(5),
 
-        G1(), G2(), G3(),
-        H1(), H2(), H3(),
-        I1(), I2(), I3(),
+        G1(1), G2(1), G3(1),
+        H1(2), H2(2), H3(2),
+        I1(5), I2(5), I3(5),
 
         // Placeholder card
-        PLACEHOLDER,
+        PLACEHOLDER(0),
         ;
         private int propertyPrice;
 
