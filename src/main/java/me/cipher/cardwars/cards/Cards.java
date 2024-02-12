@@ -39,36 +39,56 @@ public class Cards {
         ;
         private int propertyPrice;
 
-        Card(int propteryPrice) {
-            this.propertyPrice = propteryPrice;
+        Card(int propertyPrice) {
+            this.propertyPrice = propertyPrice;
         }
 
         public int getPropertyPrice() {
             return propertyPrice;
         }
+
     }
 
     // Enumeration for sets of cards
     public enum Set {
-        ROYAL,
-        WARRIOR,
 
+        A(5),
+        B(5),
+        C(5),
+        D(4),
+        E(4),
+        F(4),
+        G(3),
+        H(3),;
+        private int NumberOfProperties;
+
+        Set(int numberOfProperties) {
+            NumberOfProperties = numberOfProperties;
+        }
+
+        public int getNumberOfProperties() {
+            return NumberOfProperties;
+        }
     }
+
 
     // Enumeration for groups of cards
     public enum Group {
-        EMPTY,
-        NATION, ROYAL_FAMILY, HEIRLOOM,
-        ASSASSINS, SPECIAL_FORCES, MAGES
+        EMPTY(0),
+        ADG(1),
+        BEH(2),
+        CFI(3),;
+        private int GroupNumber;
+
+        Group(int groupNumber) {
+            GroupNumber = groupNumber;
+        }
+
+        public int getGroupNumber() {
+            return GroupNumber;
+        }
     }
-    public int getRentPrice(Card c){
 
-        int i = 0;
-
-
-
-        return i;
-    }
 
     // Get the group of a card
     public Group getGroup(Card c) {
@@ -81,7 +101,7 @@ public class Cards {
 
     // Get the set of a group
     public Set getSet(Group g) {
-        if (g.ordinal() <= Group.MAGES.ordinal()) {
+        if (g.ordinal() <= Group.ADG.ordinal()) {
             // Divide ordinal value by 2 to determine the set
             return Set.values()[g.ordinal() / 2];
         }
