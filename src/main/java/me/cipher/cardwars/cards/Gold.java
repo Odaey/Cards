@@ -29,6 +29,7 @@ Gold implements Listener {
     public void onAction(PlayerInteractAtEntityEvent e){
 
         States s = new States(plugin);
+        SlotGetters g = new SlotGetters(plugin);
         Entity en = e.getRightClicked();
         Player p = e.getPlayer();
 
@@ -41,8 +42,11 @@ Gold implements Listener {
 
         MapMeta mm = (MapMeta) iframe.getItem().getItemMeta();
 
+        Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
+
         addGold(p, Integer.parseInt(mm.getDisplayName()));
-        iframe.setItem(new ItemStack(Material.AIR));
+        g.clearDeckSlot(iframe.getLocation());
+        iframe.remove();
         e.setCancelled(true);
 
     }

@@ -11,3 +11,4 @@ commands:
   getteam:
   setgold:
   getgold:
+  draw:

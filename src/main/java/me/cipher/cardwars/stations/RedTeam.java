@@ -36,6 +36,11 @@ public class RedTeam {
         return new Location(Bukkit.getWorld("samer3abyt"), 58, 81, -39);
     }
 
+    public Location getDeckSlot(int i){
+
+        return new Location(Bukkit.getWorld("samer3abyt"),59 + i,77, -41);
+    }
+
     // Gets the direction the Red Team's deck is facing.
     public BlockFace getDeckDirection() {
         return BlockFace.SOUTH;

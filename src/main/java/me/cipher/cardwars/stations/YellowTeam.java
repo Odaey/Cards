@@ -26,6 +26,11 @@ public class YellowTeam {
     // Gets the initial spawn point for the Yellow Team.
     public Location getInitialPoint() {
         return new Location(Bukkit.getWorld("samer3abyt"), 68, 81, -71);
+
+    }
+    public Location getDeckSlot(int i){
+
+        return new Location(Bukkit.getWorld("samer3abyt"),67 - i,77, -69);
     }
 
     // Translates coordinates based on the given slot.

@@ -8,6 +8,7 @@ import me.cipher.cardwars.stations.YellowTeam;
 import me.cipher.cardwars.uitls.SlotGetters;
 import me.cipher.cardwars.uitls.States;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
@@ -26,18 +27,18 @@ import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 
 public class ActionCards implements Listener {
-
+    private BukkitRunnable timer;
     private final CardWars plugin;
 
-    private BukkitRunnable timer;
     public ActionCards(CardWars plugin) {
         this.plugin = plugin;
     }
-    ;
+
     @EventHandler
     public void onAction(PlayerInteractAtEntityEvent e){
 
         States s = new States(plugin);
+        SlotGetters g = new SlotGetters(plugin);
         Entity en = e.getRightClicked();
         Player p = e.getPlayer();
 
@@ -56,13 +57,12 @@ public class ActionCards implements Listener {
         MapMeta mm = (MapMeta) iframe.getItem().getItemMeta();
 
         if(mm.getDisplayName().equalsIgnoreCase("Debt Collector")){
-
-            e.setCancelled(true);
-            iframe.setItem(new ItemStack(Material.AIR));
-
-
+            Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
+            g.clearDeckSlot(iframe.getLocation());
+            iframe.remove();
 
             openGUI(p,m,9,"DebtCollector");
+            e.setCancelled(true);
         }
         if(mm.getDisplayName().equalsIgnoreCase("Its My Birthday")){
 
@@ -73,6 +73,7 @@ public class ActionCards implements Listener {
     public void onReaction(PlayerInteractAtEntityEvent e){
 
         States s = new States(plugin);
+        SlotGetters g = new SlotGetters(plugin);
         Entity en = e.getRightClicked();
         Player p = e.getPlayer();
 
@@ -83,14 +84,25 @@ public class ActionCards implements Listener {
         if(iframe.getItem().getType() != Material.FILLED_MAP) return;
 
         MapMeta mm = (MapMeta) iframe.getItem().getItemMeta();
+        ArrayList<String> l = (ArrayList<String>) mm.getLore();
 
         if(mm.getDisplayName().equalsIgnoreCase("Just Say No")){
-
-            e.setCancelled(true);
-            iframe.setItem(new ItemStack(Material.AIR));
+            Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
+            g.clearDeckSlot(iframe.getLocation());
+            iframe.remove();
 
             new States(plugin).addDue(p, States.Dues.NONE);
-            Bukkit.broadcastMessage(p.getName()+" said no");
+            e.setCancelled(true);
+            Bukkit.broadcastMessage(p.getName()+" just said no");
+        }else if(l.contains("Diamond")){
+            Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
+            g.clearDeckSlot(iframe.getLocation());
+            iframe.remove();
+
+            new States(plugin).addDue(p, States.Dues.NONE);
+            Bukkit.broadcastMessage(p.getName()+" Used the "+ ChatColor.BLUE + "Diamond Card");
+
+            e.setCancelled(true);
         }
     }
     public static void openGUI(Player p, ArrayList<Material> l, int slots, String name){

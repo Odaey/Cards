@@ -27,6 +27,10 @@ public class BlueTeam {
     public Location getInitialPoint() {
         return new Location(Bukkit.getWorld("samer3abyt"), 79, 81, -50);
     }
+    public Location getDeckSlot(int i){
+
+        return new Location(Bukkit.getWorld("samer3abyt"),59 + i,77, -41);
+    }
 
     // Translates coordinates based on the given slot.
     public Location translateCords(Slot s) {

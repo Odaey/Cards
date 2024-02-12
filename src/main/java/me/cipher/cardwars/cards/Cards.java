@@ -18,19 +18,34 @@ public class Cards {
         Sly_Deal,//Steal a property from the player of ur choice(Cannot be a part of a full set)
     }*/}
 
-    public enum Card {
-        // jeddah
-        FORTS, TOWERS, VILLAGERS, KINGDOM, ARMY, KNIGHTS,
-        KING, QUEEN, PRINCE, PRINCESS, SQUIRE,
-        RUNE, TREASURE, CROWN, ROYAL_STAFF, THRONE,
 
-         //Warrior cards
-        NINJA, MERCENARY, HITMAN, SHADOWREAPER,
-        DUELIST, HERO, BATTLEFRONT, MECHA, HIGHLANDER,
-        WIZARD, WITCH, ORACLE, WARLOCK, JEST, ENCHANTER,
+    public enum Card {
+
+
+        A1(), A2(), A3(), A4(), A5(),
+        B1(), B2(), B3(), B4(), B5(),
+        C1(), C2(), C3(), C4(), C5(),
+
+        D1(), D2(), D3(), D4(),
+        E1(), E2(), E3(), E4(),
+        F1(), F2(), F3(), F4(),
+
+        G1(), G2(), G3(),
+        H1(), H2(), H3(),
+        I1(), I2(), I3(),
 
         // Placeholder card
         PLACEHOLDER,
+        ;
+        private int propertyPrice;
+
+        Card(int propteryPrice) {
+            this.propertyPrice = propteryPrice;
+        }
+
+        public int getPropertyPrice() {
+            return propertyPrice;
+        }
     }
 
     // Enumeration for sets of cards
@@ -45,6 +60,14 @@ public class Cards {
         EMPTY,
         NATION, ROYAL_FAMILY, HEIRLOOM,
         ASSASSINS, SPECIAL_FORCES, MAGES
+    }
+    public int getRentPrice(Card c){
+
+        int i = 0;
+
+
+
+        return i;
     }
 
     // Get the group of a card
