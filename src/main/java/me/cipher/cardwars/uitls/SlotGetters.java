@@ -6,6 +6,7 @@ import me.cipher.cardwars.stations.BlueTeam;
 import me.cipher.cardwars.stations.GreenTeam;
 import me.cipher.cardwars.stations.RedTeam;
 import me.cipher.cardwars.stations.YellowTeam;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -96,5 +97,15 @@ public class SlotGetters {
         }
 
         return s;
+    }
+    public void setGold(Player p, int i){
+
+        String id = getPlayerTeam(p);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                "scoreboard players set "+p.getName() +" Gold "+ i);
+
+        plugin.getConfig().set("Teams."+id+".Gold",i);
+        plugin.saveConfig();
     }
 }

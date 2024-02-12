@@ -52,12 +52,12 @@ public class Gold implements Listener {
 
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard players add "+p.getName()+" Gold "+i);
 
-        if(plugin.getConfig().contains("Team."+team+".Gold")){
+        if(plugin.getConfig().contains("Teams."+team+".Gold")){
 
             newg = plugin.getConfig().getInt("Teams."+team+".Gold");
         }
 
-        plugin.getConfig().set("Teams."+team+".Gold", newg + i);
+        plugin.getConfig().set("Teams."+team+".Gold",newg + i);
         plugin.saveConfig();
     }
 }

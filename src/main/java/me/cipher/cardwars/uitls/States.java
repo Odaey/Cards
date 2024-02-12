@@ -12,6 +12,11 @@ import java.util.ArrayList;
 public class States {
     private final CardWars plugin;
 
+    public enum Dues{
+
+        DEBT,
+        NONE,
+    }
     public States(CardWars plugin) {
         this.plugin = plugin;
     }
@@ -39,5 +44,14 @@ public class States {
     public boolean isHolding(Player p){
 
         return p.getInventory().getItemInMainHand().getType() == Material.FILLED_MAP;
+    }
+    public void addDue(Player p, Dues d){
+
+        plugin.getConfig().set("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus", d);
+        plugin.saveConfig();
+    }
+    public boolean hasDebt(Player p){
+
+        return  plugin.getConfig().get("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus").equals(Dues.DEBT);
     }
 }

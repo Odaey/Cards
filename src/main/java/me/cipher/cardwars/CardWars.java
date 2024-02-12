@@ -4,6 +4,7 @@ import me.cipher.cardwars.cards.ActionCards;
 import me.cipher.cardwars.cards.Gold;
 import me.cipher.cardwars.cards.Properties;
 import me.cipher.cardwars.mechanics.Cmds;
+import me.cipher.cardwars.testingkit.QuickStart;
 import me.cipher.cardwars.testingkit.Visuals;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,7 +22,11 @@ public final class CardWars extends JavaPlugin {
         getServer().getPluginCommand("addplayer").setExecutor(new Cmds(this));
         getServer().getPluginCommand("removeplayer").setExecutor(new Cmds(this));
         getServer().getPluginCommand("startgame").setExecutor(new Cmds(this));
-        getServer().getPluginCommand("setProperty").setExecutor(new Visuals(this));
+        getServer().getPluginCommand("setproperty").setExecutor(new Visuals(this));
+        getServer().getPluginCommand("setteam").setExecutor(new QuickStart(this));
+        getServer().getPluginCommand("getteam").setExecutor(new QuickStart(this));
+        getServer().getPluginCommand("setgold").setExecutor(new QuickStart(this));
+        getServer().getPluginCommand("getgold").setExecutor(new QuickStart(this));
     }
 
     @Override

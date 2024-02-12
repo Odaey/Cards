@@ -6,4 +6,8 @@ commands:
   addplayer:
   removeplayer:
   startgame:
-  setProperty:
+  setproperty:
+  setteam:
+  getteam:
+  setgold:
+  getgold:
