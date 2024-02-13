@@ -10,6 +10,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GreenTeam {
     private final CardWars plugin;
@@ -25,7 +26,7 @@ public class GreenTeam {
 
     // Gets the initial spawn point for the Green Team.
     public Location getInitialPoint() {
-        return new Location(Bukkit.getWorld("samer3abyt"), 47, 81, -60);
+        return new Location(Bukkit.getWorld("samer3abyt"), 49, 81, -60);
     }
     public Location getDeckSlot(int i){
 
@@ -72,22 +73,7 @@ public class GreenTeam {
     }
 
     // Gets a list of all groups associated with the Green Team.
-    public ArrayList<Cards.Group> getAllGroups() {
-        ArrayList<Cards.Group> groups = new ArrayList<>();
 
-        for (int i = 1; i <= 6; i++) {
-            String groupPath = "Teams." + getTeamID() + ".Properties.Groups.Group" + i + ".Type";
-
-            if (plugin.getConfig().contains(groupPath)) {
-                Cards.Group group = (Cards.Group) plugin.getConfig().get(groupPath);
-                groups.add(group);
-            } else {
-                groups.add(Cards.Group.EMPTY);
-            }
-        }
-
-        return groups;
-    }
 }
 
 

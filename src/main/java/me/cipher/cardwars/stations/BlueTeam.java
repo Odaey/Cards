@@ -10,6 +10,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BlueTeam {
     private final CardWars plugin;
@@ -25,7 +26,7 @@ public class BlueTeam {
 
     // Gets the initial spawn point for the Blue Team.
     public Location getInitialPoint() {
-        return new Location(Bukkit.getWorld("samer3abyt"), 79, 81, -50);
+        return new Location(Bukkit.getWorld("samer3abyt"), 78, 81, -50);
     }
     public Location getDeckSlot(int i){
 
@@ -72,21 +73,6 @@ public class BlueTeam {
     }
 
     // Gets a list of all groups associated with the Blue Team.
-    public ArrayList<Cards.Group> getAllGroups() {
-        ArrayList<Cards.Group> groups = new ArrayList<>();
 
-        for (int i = 1; i <= 6; i++) {
-            String groupPath = "Teams." + getTeamID() + ".Properties.Groups.Group" + i + ".Type";
-
-            if (plugin.getConfig().contains(groupPath)) {
-                Cards.Group group = (Cards.Group) plugin.getConfig().get(groupPath);
-                groups.add(group);
-            } else {
-                groups.add(Cards.Group.EMPTY);
-            }
-        }
-
-        return groups;
-    }
 }
 

@@ -52,6 +52,11 @@ public class States {
     }
     public boolean hasDebt(Player p){
 
-        return  plugin.getConfig().get("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus").equals(Dues.DEBT);
+        if(plugin.getConfig().contains("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus")){
+
+            if(plugin.getConfig().get("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus").equals(Dues.DEBT)) return true;
+        }
+
+        return false;
     }
 }

@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.MapMeta;
 
 public class Visuals implements CommandExecutor {
@@ -36,7 +35,7 @@ public class Visuals implements CommandExecutor {
                     int mapId = Integer.parseInt(args[0]);
                     String teamId = args[1];
                     Location l = p.getTargetBlock(null,5).getLocation();
-                    BlockFace d = new SlotGetters(plugin).getDirection(teamId);
+                    BlockFace d = new SlotGetters(plugin).getDeckDirection(teamId);
 
                     l.getBlock().setType(Material.AIR);
 

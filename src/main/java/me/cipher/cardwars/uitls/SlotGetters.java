@@ -19,22 +19,7 @@ import org.bukkit.inventory.meta.MapMeta;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.BlockFace;
-import org.bukkit.command.BlockCommandSender;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.MapMeta;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.Objects;
+import static me.cipher.cardwars.cards.Cards.Set.getSetFromId;
 
 public class SlotGetters {
     private final CardWars plugin;
@@ -43,47 +28,8 @@ public class SlotGetters {
         this.plugin = plugin;
     }
 
-    public Slot getAvailableSlot(Cards.Card card, ArrayList<Cards.Group> groups, String teamId) {
-        Cards cs = new Cards();
-        Cards.Group cardGroup = cs.getGroup(card);
-        int groupIndex = groups.indexOf(cardGroup);
 
-        return (groupIndex != -1) ? new Slot(getNextRow(groupIndex, teamId), groupIndex) : null;
-    }
-
-    private int getNextRow(int groupIndex, String teamId) {
-        String groupPath = "Teams." + teamId + ".Properties.Groups.Group" + (groupIndex + 1);
-
-        if (plugin.getConfig().contains(groupPath)) {
-            ArrayList<Cards.Card> cards = (ArrayList<Cards.Card>) plugin.getConfig().getList(groupPath);
-            return cards.size() + 1;
-        }
-
-        return 0;
-    }
-
-    public ArrayList<Cards.Group> getTeamGroups(String teamId) {
-        ArrayList<Cards.Group> groups = null;
-
-        switch (teamId) {
-            case "RedTeam":
-                groups = new RedTeam(plugin).getAllGroups();
-                break;
-            case "BlueTeam":
-                groups = new BlueTeam(plugin).getAllGroups();
-                break;
-            case "YellowTeam":
-                groups = new YellowTeam(plugin).getAllGroups();
-                break;
-            case "GreenTeam":
-                groups = new GreenTeam(plugin).getAllGroups();
-                break;
-        }
-
-        return groups;
-    }
-
-    public Location slotLocation(String teamId, Slot slot) {
+    public Location getSlotLocation(String teamId, Slot slot) {
         Location location = null;
 
         switch (teamId) {
@@ -104,7 +50,27 @@ public class SlotGetters {
         return location;
     }
 
-    public BlockFace getDirection(String teamId) {
+    public BlockFace getDeckDirection(String teamId) {
+        BlockFace direction = null;
+
+        switch (teamId) {
+            case "RedTeam":
+                direction = new RedTeam(plugin).getDeckDirection();
+                break;
+            case "BlueTeam":
+                direction = new BlueTeam(plugin).getDeckDirection();
+                break;
+            case "YellowTeam":
+                direction = new YellowTeam(plugin).getDeckDirection();
+                break;
+            case "GreenTeam":
+                direction = new GreenTeam(plugin).getDeckDirection();
+                break;
+        }
+
+        return direction;
+    }
+    public BlockFace getPropertyDirection(String teamId){
         BlockFace direction = null;
 
         switch (teamId) {
@@ -123,6 +89,7 @@ public class SlotGetters {
         }
 
         return direction;
+
     }
 
     public String getPlayerTeam(Player p) {
@@ -161,7 +128,7 @@ public class SlotGetters {
         Location l = getLocationForDeckSlot(new Location(Bukkit.getWorld(""), 0, 0, 0), s, slot);
 
         ItemFrame itemFrame = l.getWorld().spawn(l, ItemFrame.class);
-        itemFrame.setFacingDirection(getDirection(s));
+        itemFrame.setFacingDirection(getDeckDirection(s));
 
         ItemStack mapItem = new ItemStack(Material.FILLED_MAP);
         mapItem.setItemMeta(m);
@@ -298,11 +265,51 @@ public class SlotGetters {
     public boolean isEmptySlot(String path) {
         if(!plugin.getConfig().contains(path) || plugin.getConfig().get(path).equals(Empty.EMPTY)){
 
-            Bukkit.broadcastMessage("The path "+path+" is empty");
-
             return true;
         }
-        Bukkit.broadcastMessage("The path "+path+" is NOT empty");
         return false;
+    }
+    public Slot getAvailablePSlot(String teamId, Cards.Card c){
+
+        return new Slot(getAvailableRow(getSetColumn(c.getSet(),teamId),teamId),getSetColumn(c.getSet(),teamId));
+    }
+    public int getSetColumn(Cards.Set s, String teamId){
+
+        ArrayList<Cards.Set> sl = new ArrayList<>();
+        int n = 0;
+
+        for(int i = 1; i <= 9; i++){
+            if(plugin.getConfig().contains("Teams."+teamId+".Property.Column"+i+"Set")){
+                Cards.Set ss = getSetFromId(plugin.getConfig().getString("Teams."+teamId+".Property.Column"+i+"Set"));
+                sl.add(ss);
+            }else{
+                sl.add(Cards.Set.EMPTY);
+            }
+        }
+
+        // Check if any column already has the same set
+        if(sl.contains(s)){
+            n = sl.indexOf(s);
+        } else {
+            // If the set is not found in any column, find the first empty column
+            for (int i = 1; i <= 9; i++) {
+                if (sl.get(i - 1) == Cards.Set.EMPTY) {
+                    n = i - 1;  // Found an empty column
+                    break;
+                }
+            }
+        }
+
+        return n;
+    }
+    public int getAvailableRow(int column, String teamId){
+
+        ArrayList<String> l = (ArrayList<String>) plugin.getConfig().getList("Teams." + teamId + ".Property.Column" + column + "Cards");
+        if(l != null){
+
+            return l.size();
+        }
+
+        return 0;
     }
 }

@@ -11,6 +11,7 @@ import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RedTeam {
     private final CardWars plugin;
@@ -33,7 +34,7 @@ public class RedTeam {
 
     // Gets the initial spawn point for the Red Team.
     public Location getInitialPoint() {
-        return new Location(Bukkit.getWorld("samer3abyt"), 58, 81, -39);
+        return new Location(Bukkit.getWorld("samer3abyt"), 58, 81, -41);
     }
 
     public Location getDeckSlot(int i){
@@ -75,20 +76,5 @@ public class RedTeam {
     }
 
     // Gets a list of all groups associated with the Red Team.
-    public ArrayList<Cards.Group> getAllGroups() {
-        ArrayList<Cards.Group> groups = new ArrayList<>();
 
-        for (int i = 1; i <= 6; i++) {
-            String groupPath = "Teams." + getTeamID() + ".Properties.Groups.Group" + i + ".Type";
-
-            if (plugin.getConfig().contains(groupPath)) {
-                Cards.Group group = (Cards.Group) plugin.getConfig().get(groupPath);
-                groups.add(group);
-            } else {
-                groups.add(Cards.Group.EMPTY);
-            }
-        }
-
-        return groups;
-    }
 }
