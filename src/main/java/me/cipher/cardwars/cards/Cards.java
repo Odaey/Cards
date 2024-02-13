@@ -4,7 +4,16 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+
+
 public class Cards {
+
+
 
     {// action cards
     /*public enum ActionCards{
@@ -17,59 +26,60 @@ public class Cards {
         Pass_GO,//Draw extra 2 cards
         Sly_Deal,//Steal a property from the player of ur choice(Cannot be a part of a full set)
     }*/}
+    public enum Set  {
+        A, B, C, D, E, F, G, H, I;
+
+    }
+
+    public enum Card   {
 
 
-    public enum Card {
+        A1(2,Set.A), A2(2,Set.A), A3(2,Set.A), A4(2,Set.A), A5(2,Set.A),
+        B1(3,Set.B), B2(3,Set.B), B3(3,Set.B), B4(3,Set.B), B5(3,Set.B),
+        C1(5,Set.C), C2(5,Set.C), C3(5,Set.C), C4(5,Set.C), C5(5,Set.C),
 
-
-        A1(2), A2(2), A3(2), A4(2), A5(2),
-        B1(3), B2(3), B3(3), B4(3), B5(3),
-        C1(5), C2(5), C3(5), C4(5), C5(5),
-
-        D1(1), D2(1), D3(1), D4(1),
-        E1(2), E2(2), E3(2), E4(2),
-        F1(5), F2(5), F3(5), F4(5),
-
-        G1(1), G2(1), G3(1),
-        H1(2), H2(2), H3(2),
-        I1(5), I2(5), I3(5),
+        D1(1,Set.D), D2(1,Set.D), D3(1,Set.D), D4(1,Set.D),
+        E1(2,Set.E), E2(2,Set.E), E3(2,Set.E), E4(2,Set.E),
+        F1(5,Set.F), F2(5,Set.F), F3(5,Set.F), F4(5,Set.F),
+        G1(1,Set.G), G2(1,Set.G), G3(1,Set.G),
+        H1(2,Set.H), H2(2,Set.H), H3(2,Set.H),
+        I1(5,Set.I), I2(5,Set.I), I3(5,Set.I),
 
         // Placeholder card
-        PLACEHOLDER(0),
+        PLACEHOLDER(0,null),
         ;
         private int propertyPrice;
+        private Set set;
 
-        Card(int propertyPrice) {
+
+        Card(int propertyPrice,Set set) {
+
             this.propertyPrice = propertyPrice;
+            this.set = set;
+
+
         }
 
         public int getPropertyPrice() {
             return propertyPrice;
         }
 
+        public Set getSet() {
+            return set;
+        }
+        public static Set getSet(Card card){
+            return card.getSet();
+
+        }
     }
+
+
+
 
     // Enumeration for sets of cards
-    public enum Set {
 
-        A(5),
-        B(5),
-        C(5),
-        D(4),
-        E(4),
-        F(4),
-        G(3),
-        H(3),;
-        private int NumberOfProperties;
 
-        Set(int numberOfProperties) {
-            NumberOfProperties = numberOfProperties;
-        }
 
-        public int getNumberOfProperties() {
-            return NumberOfProperties;
-        }
-    }
 
 
     // Enumeration for groups of cards
