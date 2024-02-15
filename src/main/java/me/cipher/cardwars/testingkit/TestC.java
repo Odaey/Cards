@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Draw implements CommandExecutor {
+public class TestC implements CommandExecutor {
 
     private final CardWars plugin;
 
@@ -23,7 +23,7 @@ public class Draw implements CommandExecutor {
             addCard("Just Say No","","Just_Say_No",9),addCard("1","Gold","1_GOLD",20),addCard("2","Gold","2_GOLD",18),
             addCard("5","Gold","5_GOLD",19),addCard("10","Gold","10_GOLD",17),addCard("20","Gold","20_GOLD",16),
             addCard("","Diamond","DIAMOND_CARD",21)));
-    public Draw(CardWars plugin) {
+    public TestC(CardWars plugin) {
         this.plugin = plugin;
     }
     @Override

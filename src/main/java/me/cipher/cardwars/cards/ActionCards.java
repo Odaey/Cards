@@ -48,15 +48,26 @@ public class ActionCards implements Listener {
         m.add(Material.YELLOW_CONCRETE);
         m.add(Material.GREEN_CONCRETE);
 
+        ArrayList<String> t = new ArrayList<>();
+        t.add("RedTeam");
+        t.add("BlueTeam");
+        t.add("YellowTeam");
+        t.add("GreenTeam");
+
         if(/*!s.isInGame(p) || !s.activeTurn(p) || */!(en instanceof ItemFrame)) return;
 
         ItemFrame iframe = (ItemFrame) en;
 
+
         if(iframe.getItem().getType() != Material.FILLED_MAP) return;
 
         MapMeta mm = (MapMeta) iframe.getItem().getItemMeta();
+        String cardType = mm.getLore().get(0);
+        String cname = mm.getLore().get(1);
 
-        if(mm.getDisplayName().equalsIgnoreCase("Debt Collector")){
+        if(!cardType.equalsIgnoreCase("Action Card")) return;
+
+        if(cname.equalsIgnoreCase("Debt_Collector")){
             Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
             g.clearDeckSlot(iframe.getLocation());
             iframe.remove();
@@ -64,9 +75,28 @@ public class ActionCards implements Listener {
             openGUI(p,m,9,"DebtCollector");
             e.setCancelled(true);
         }
-        if(mm.getDisplayName().equalsIgnoreCase("Its My Birthday")){
+        if(cname.equalsIgnoreCase("Birthday_Present")){
 
+            int goldOwed = 0;
 
+            //Alert Everyone
+            //Checked who declined or used a diamond card
+
+            for(String teamN : t){
+
+                if(!plugin.getConfig().contains("Teams."+teamN+".Gold")) return;
+
+                if(plugin.getConfig().getInt("Teams."+teamN+".Gold") > 1){
+
+                    int theirGold = plugin.getConfig().getInt("Teams."+teamN+".Gold");
+                    int newGold = theirGold - 2;
+
+                    plugin.getConfig().set("Teams."+teamN+".Gold",newGold);
+                    plugin.saveConfig();
+
+                    goldOwed = goldOwed + 2;
+                }
+            }
         }
     }
     @EventHandler

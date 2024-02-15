@@ -263,7 +263,7 @@ public class SlotGetters {
     }
 
     public boolean isEmptySlot(String path) {
-        if(!plugin.getConfig().contains(path) || plugin.getConfig().get(path).equals(Empty.EMPTY)){
+        if (plugin.getConfig().get(path) == Empty.EMPTY) {
 
             return true;
         }
@@ -302,14 +302,17 @@ public class SlotGetters {
 
         return n;
     }
-    public int getAvailableRow(int column, String teamId){
+    public int getAvailableRow(int column, String teamId) {
+        ArrayList<String> cardList = (ArrayList<String>) plugin.getConfig().getList("Teams." + teamId + ".Property.Column" + (column + 1) + "Cards");
 
-        ArrayList<String> l = (ArrayList<String>) plugin.getConfig().getList("Teams." + teamId + ".Property.Column" + column + "Cards");
-        if(l != null){
-
-            return l.size();
+        if (cardList != null) {
+            int lastRow = cardList.size();
+            // If there are cards in the column, return the next available row
+            return lastRow;
         }
 
+        // If the list is null or empty, start from the first row (0)
         return 0;
     }
+
 }

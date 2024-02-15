@@ -6,15 +6,15 @@ import java.util.Arrays;
 public class Cards {
 
     public enum Set {
-        A(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5))),
-        B(new ArrayList<>(Arrays.asList(1, 2, 4, 6, 8))),
-        C(new ArrayList<>(Arrays.asList(2, 4, 6, 8, 10))),
-        D(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 4))),
-        E(new ArrayList<>(Arrays.asList(2, 3, 4, 5, 5))),
-        F(new ArrayList<>(Arrays.asList(2, 5, 8, 10, 10))),
-        G(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 3))),
-        H(new ArrayList<>(Arrays.asList(3, 5, 7, 7, 7))),
-        I(new ArrayList<>(Arrays.asList(4, 8, 12, 12, 12))),
+        A(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5))),//Countries
+        B(new ArrayList<>(Arrays.asList(1, 2, 4, 6, 8))),//Game Characters
+        C(new ArrayList<>(Arrays.asList(2, 4, 6, 8, 10))),//food
+        D(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 4))),//Mental illness
+        E(new ArrayList<>(Arrays.asList(2, 3, 4, 5, 5))),//Artists
+        F(new ArrayList<>(Arrays.asList(2, 5, 8, 10, 10))),//Historical figures
+        G(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 3))),//Majors
+        H(new ArrayList<>(Arrays.asList(3, 5, 7, 7, 7))),//Prizes
+        I(new ArrayList<>(Arrays.asList(4, 8, 12, 12, 12))),//Our Places
         EMPTY(null);
 
         private final ArrayList<Integer> rent;

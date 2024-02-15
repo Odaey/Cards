@@ -4,12 +4,10 @@ import me.cipher.cardwars.cards.ActionCards;
 import me.cipher.cardwars.cards.Gold;
 import me.cipher.cardwars.cards.Properties;
 import me.cipher.cardwars.mechanics.Cmds;
-import me.cipher.cardwars.testingkit.Draw;
+import me.cipher.cardwars.testingkit.TestC;
 import me.cipher.cardwars.testingkit.QuickStart;
 import me.cipher.cardwars.testingkit.Visuals;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import javax.swing.*;
 
 public final class CardWars extends JavaPlugin {
 
@@ -28,7 +26,7 @@ public final class CardWars extends JavaPlugin {
         getServer().getPluginCommand("getteam").setExecutor(new QuickStart(this));
         getServer().getPluginCommand("setgold").setExecutor(new QuickStart(this));
         getServer().getPluginCommand("getgold").setExecutor(new QuickStart(this));
-        getServer().getPluginCommand("draw").setExecutor(new Draw(this));
+        getServer().getPluginCommand("draw").setExecutor(new TestC(this));
     }
 
     @Override

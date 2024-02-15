@@ -39,42 +39,49 @@ public class Properties implements Listener {
         Entity en = e.getRightClicked();
         Player p = e.getPlayer();
 
-        if(/*!s.isInGame(p) || !s.activeTurn(p) || */!(en instanceof ItemFrame)) return;
+        if (!(en instanceof ItemFrame)) return;
 
         ItemFrame iframe = (ItemFrame) en;
 
-        if(iframe.getItem().getType() != Material.FILLED_MAP) return;
+        if (iframe.getItem().getType() != Material.FILLED_MAP) return;
 
         MapMeta mm = (MapMeta) iframe.getItem().getItemMeta();
-        ArrayList<String> l = (ArrayList<String>) mm.getLore();
+        ArrayList<String> lore = (ArrayList<String>) mm.getLore();
 
-        if(!l.get(0).equalsIgnoreCase("Property Card")) return;
+        if (!lore.get(0).equalsIgnoreCase("Property Card")) return;
 
-        Cards.Card card = Cards.Card.getCardFromId(l.get(1));
+        Cards.Card card = Cards.Card.getCardFromId(lore.get(1));
         String team = g.getPlayerTeam(p);
 
-        Slot slot = g.getAvailablePSlot(team,card);
+        // Find the column for the card's set
+        int column = g.getSetColumn(card.getSet(), team);
 
-        int n = slot.getColumn() + 1;
-        ArrayList<String> cl = (ArrayList<String>) plugin.getConfig().getList("Teams."+ team +".Property.Column"+n+"Cards");
+        if (column == -1) {
+            // If the set is not found in any column, find the first empty column
+            for (int i = 1; i <= 9; i++) {
+                if (!plugin.getConfig().contains("Teams." + team + ".Property.Column" + i + "Set")) {
+                    column = i;
+                    break;
+                }
+            }
+        }
+        int columnname = column + 1;
+        // Add the card to the next available row in the column
+        int row = g.getAvailableRow(column, team);
+        ArrayList<String> cardList = (ArrayList<String>) plugin.getConfig().getList("Teams." + team + ".Property.Column" + columnname + "Cards");
 
-
-        if(cl != null){
-
-            cl.add(card.name());
-            plugin.getConfig().set("Teams."+ team +".Property.Column"+n+"Cards",cl);
-            plugin.getConfig().set("Teams."+ team +".Property.Column"+n+"Set",getSetID(card.getSet()));
-            plugin.saveConfig();
-        }else {
-
-            ArrayList<String> cll = new ArrayList<>();
-            cll.add(card.name());
-            plugin.getConfig().set("Teams."+ team +".Property.Column"+n+"Cards",cll);
-            plugin.getConfig().set("Teams."+ team +".Property.Column"+n+"Set",getSetID(card.getSet()));
-            plugin.saveConfig();
+        if (cardList == null) {
+            cardList = new ArrayList<>();
         }
 
-        displayProperty(team,slot,mm);
+        cardList.add(card.name());
+
+        plugin.getConfig().set("Teams." + team + ".Property.Column" + columnname + "Cards", cardList);
+        plugin.getConfig().set("Teams." + team + ".Property.Column" + columnname + "Set", getSetID(card.getSet()));
+        plugin.saveConfig();
+
+        Slot slot = new Slot(row, column);
+        displayProperty(team, slot, mm);
     }
     public void displayProperty(String teamId, Slot s,MapMeta m){
 
