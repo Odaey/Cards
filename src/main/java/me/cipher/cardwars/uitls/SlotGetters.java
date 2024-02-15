@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.MapMeta;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Set;
 
 import static me.cipher.cardwars.cards.Cards.Set.getSetFromId;
 
@@ -314,5 +315,42 @@ public class SlotGetters {
         // If the list is null or empty, start from the first row (0)
         return 0;
     }
+    public Material getTeamBlock(String s){
 
+        Material m = null;
+
+        if(s.equalsIgnoreCase("RedTeam")) m = Material.RED_CONCRETE;
+        if(s.equalsIgnoreCase("BlueTeam")) m = Material.BLUE_CONCRETE;
+        if(s.equalsIgnoreCase("YellowTeam")) m = Material.YELLOW_CONCRETE;
+        if(s.equalsIgnoreCase("GreenTeam")) m = Material.GREEN_CONCRETE;
+
+        return m;
+    }
+    public String getTeamFromBlock(Material s){
+
+        String m = null;
+
+        if(s == Material.RED_CONCRETE) m = "RedTeam";
+        if(s == Material.BLUE_CONCRETE) m = "BlueTeam";
+        if(s == Material.YELLOW_CONCRETE) m = "YellowTeam";
+        if(s == Material.GREEN_CONCRETE) m = "GreenTeam";
+
+        return m;
+    }
+    public ArrayList<Cards.Set> getTeamSets(String teamId){
+
+        ArrayList<Cards.Set> l = new ArrayList<>();
+
+        for (int i = 1; i <= 9; i++) {
+            if(plugin.getConfig().contains("Teams."+teamId+".Property.Column"+i+"Set")){
+
+                l.add(Cards.Set.getSetFromId(plugin.getConfig().getString("Teams."+teamId+".Property.Column"+i+"Set")));
+
+            }else{
+
+                l.add(Cards.Set.EMPTY);
+            }
+        }
+        return l;
+    }
 }

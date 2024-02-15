@@ -54,7 +54,7 @@ public class States {
 
         if(plugin.getConfig().contains("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus")){
 
-            if(plugin.getConfig().get("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus").equals(Dues.DEBT)) return true;
+            if(plugin.getConfig().get("Teams."+new SlotGetters(plugin).getPlayerTeam(p)+".DueStatus") == Dues.DEBT) return true;
         }
 
         return false;
