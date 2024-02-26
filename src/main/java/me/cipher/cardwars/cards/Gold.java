@@ -47,7 +47,6 @@ Gold implements Listener {
         addGold(p, Integer.parseInt(mm.getDisplayName()));
         g.clearDeckSlot(iframe.getLocation());
         iframe.remove();
-        e.setCancelled(true);
 
     }
     public void addGold(Player p, int i){

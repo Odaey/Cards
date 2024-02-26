@@ -27,6 +27,7 @@ public final class CardWars extends JavaPlugin {
         getServer().getPluginCommand("setgold").setExecutor(new QuickStart(this));
         getServer().getPluginCommand("getgold").setExecutor(new QuickStart(this));
         getServer().getPluginCommand("draw").setExecutor(new TestC(this));
+        getServer().getPluginCommand("deploydeck").setExecutor(new TestC(this));
     }
 
     @Override

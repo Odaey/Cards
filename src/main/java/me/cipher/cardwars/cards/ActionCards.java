@@ -77,7 +77,6 @@ public class ActionCards implements Listener {
             iframe.remove();
 
             openGUI(p,m,9,"DebtCollector");
-            e.setCancelled(true);
         }
         if(cname.equalsIgnoreCase("Birthday_Present")) {
             g.clearDeckSlot(iframe.getLocation());
@@ -123,14 +122,12 @@ public class ActionCards implements Listener {
                 }
             };
             timer.runTaskLater(plugin, 10 * 20L);
-            e.setCancelled(true);
         }
         if(cname.equalsIgnoreCase("Set_OverCharge")){
             g.clearDeckSlot(iframe.getLocation());
             iframe.remove();
 
             openGUI(p,m,9,"Set OverCharge Selection");
-            e.setCancelled(true);
         }
     }
     @EventHandler
@@ -156,7 +153,6 @@ public class ActionCards implements Listener {
             iframe.remove();
 
             new States(plugin).addDue(p, States.Dues.NONE);
-            e.setCancelled(true);
             Bukkit.broadcastMessage(p.getName()+" just said no");
         }else if(l.contains("Diamond")){
             Bukkit.broadcastMessage("Slot location is at " + iframe.getLocation().getX() +" "+ iframe.getLocation().getY() +" "+iframe.getLocation().getZ());
@@ -165,8 +161,6 @@ public class ActionCards implements Listener {
 
             new States(plugin).addDue(p, States.Dues.NONE);
             Bukkit.broadcastMessage(p.getName()+" Used the "+ ChatColor.BLUE + "Diamond Card");
-
-            e.setCancelled(true);
         }
     }
     public void openGUI(Player p, ArrayList<Material> l, int slots, String name){
@@ -193,8 +187,6 @@ public class ActionCards implements Listener {
         list.remove(new SlotGetters(plugin).getPlayerTeam(p));
 
         if(e.getView().getTitle().equalsIgnoreCase("DebtCollector")){
-
-            e.setCancelled(true);
 
             if(e.getCurrentItem().getType() == Material.RED_CONCRETE){
 
@@ -408,6 +400,13 @@ public class ActionCards implements Listener {
 
                 plugin.getConfig().set("Teams."+s.getPlayerTeam(p)+".Property.Column"+newColumn+"Cards",finalList);
                 plugin.saveConfig();
+
+                ItemStack im = new ItemStack(Material.ITEM_FRAME);
+
+                for(Cards.Card c : finalCardList){
+
+
+                }
             }
             else{
 
@@ -416,9 +415,8 @@ public class ActionCards implements Listener {
                 plugin.getConfig().set("Teams."+s.getPlayerTeam(p)+".Property.Column"+newColumn+"Cards",cardNameList);
                 plugin.saveConfig();
             }
-
         }
-        e.setCancelled(true);
+
     }
     public void open2ndGUI(Player p, ArrayList<ItemStack> l, String name){
 

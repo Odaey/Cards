@@ -57,12 +57,16 @@ public class Cards {
 
         private final int propertyPrice;
         private final Set set;
+        private final int displayID;
 
         Card(int propertyPrice, Set set, int displayID) {
             this.propertyPrice = propertyPrice;
             this.set = set;
+            this.displayID = displayID;
         }
-
+        public int getDisplayID() {
+            return displayID;
+        }
         public int getPropertyPrice() {
             return propertyPrice;
         }

@@ -12,3 +12,4 @@ commands:
   setgold:
   getgold:
   draw:
+  deploydeck:

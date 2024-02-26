@@ -1,8 +1,11 @@
 package me.cipher.cardwars.testingkit;
 
 import me.cipher.cardwars.CardWars;
+import me.cipher.cardwars.cards.Draw;
+import me.cipher.cardwars.mechanics.InitializeGame;
 import me.cipher.cardwars.uitls.SlotGetters;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -45,6 +48,18 @@ public class TestC implements CommandExecutor {
 
                     new SlotGetters(plugin).addDeckCard(mp,team);
                 }
+            }else
+            if(s.equalsIgnoreCase("DeployDeck")){
+
+                Location loc1 = new Location(Bukkit.getWorld("samer3abyt"),0,-59,0);
+                Location loc2 = new Location(Bukkit.getWorld("samer3abyt"),0,-60,0);
+
+                loc1.getBlock().setType(Material.RED_SHULKER_BOX);
+                loc2.getBlock().setType(Material.BLUE_SHULKER_BOX);
+
+                Draw d = new Draw();
+                d.initializeCards();
+                new InitializeGame().summonDeck(d.AllCards);
             }
         }
         return false;
